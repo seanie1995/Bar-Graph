@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "month": "Mån",
+      "value": 9000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Tis",
+      "value": 12000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Ons",
+      "value": 8000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Tors",
+      "value": 11000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Fre",
+      "value": 12000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Lör",
+      "value": 9000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Sön",
+      "value": 4000,
+      "color": "#e38a1e"
+    }
+  ]
+}

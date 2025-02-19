@@ -1,0 +1,17 @@
+{
+    "data": [
+      { "month": "Jan", "value": 90 },
+      { "month": "Feb", "value": 120 },
+      { "month": "Mar", "value": 80 },
+      { "month": "Apr", "value": 110 },
+      { "month": "May", "value": 120 },
+      { "month": "Jun", "value": 90 },
+      { "month": "Jul", "value": 140 },
+      { "month": "Aug", "value": 100 },
+      { "month": "Sept", "value": 130 },
+      { "month": "Oct", "value": 90 },
+      { "month": "Nov", "value": 140 },
+      { "month": "Dec", "value": 120 }
+    ]
+  }
+  

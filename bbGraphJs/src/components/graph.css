@@ -1,0 +1,41 @@
+.mainContainer {
+    border: 1px solid black;
+    display: flex;
+    width: 710px;
+    height: 280px;
+    padding: 25px; }
+
+.graphContainer {
+    /* border: 1px dotted black; */
+    padding: 20px 25px 20px 25px;
+}
+
+.dateLabel {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.valueLabel {
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.barData {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+.radioBox {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid black;
+    width: 150px;
+    margin-top: 10px;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: center; /* Align checkbox and label in one row */
+    gap: 8px; /* Space between checkbox and text */
+}

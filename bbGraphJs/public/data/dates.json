@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "month": "Jan",
+      "value": 9000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Feb",
+      "value": 12000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Mar",
+      "value": 8000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Apr",
+      "value": 11000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "May",
+      "value": 12000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Jun",
+      "value": 9000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Jul",
+      "value": 14000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Aug",
+      "value": 10000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Sept",
+      "value": 13000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Oct",
+      "value": 9000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Nov",
+      "value": 10000,
+      "color": "#e38a1e"
+    },
+    {
+      "month": "Dec",
+      "value": 12000,
+      "color": "#e38a1e"
+    }
+  ]
+}
