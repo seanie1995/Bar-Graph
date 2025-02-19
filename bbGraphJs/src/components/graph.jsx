@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./graph.css";
 
 function Graph() {
-    const [dataWithMoms, setData] = useState([]);
+    const [data, setData] = useState([]);
     const [tooltip, setTooltip] = useState({ x: 0, y: 0, value: 0, visible: false });
     const [fmData, setFmData] = useState([]);
 
@@ -18,6 +18,16 @@ function Graph() {
         }
     }
 
+    // useEffect(() => {
+    //     fetch("/data/dates.json")
+    //         .then(response => response.json())
+    //         .then(json => {
+    //             const formattedData = json.data.map(item => [item.month, item.value, item.color]);
+    //             setData(formattedData);
+    //         })
+    //         .catch(error => console.error(error));
+    // }, []);
+
     const [checkBoxes, setCheckBoxes] = useState({
         exklMoms: false,
         inklMoms: true,
@@ -32,20 +42,20 @@ function Graph() {
         }));
     };
 
-    const SVG_WIDTH = 670;
-    const SVG_HEIGHT = 250;
+    const SVG_WIDTH = 680;
+    const SVG_HEIGHT = 200;
     const x0 = 0;
     const xAxisLength = SVG_WIDTH - x0 * 2;
     const y0 = 0;
     const yAxisLength = SVG_HEIGHT - y0 * 2;
     const xAxisY = y0 + yAxisLength;
 
-    const dataYMax = (dataWithMoms ?? []).reduce((currMax, [_, dataY]) => Math.max(currMax, dataY), -Infinity);
+    const dataYMax = (data ?? []).reduce((currMax, [_, dataY]) => Math.max(currMax, dataY), -Infinity);
     const dataYMin = 0;
     const dataYRange = dataYMax - dataYMin;
-    const numYTicks = dataWithMoms?.length + 1 / 2;
+    const numYTicks = data?.length / 2;
     // const numYTicks = 5;
-    const barPlotWidth = xAxisLength / ((dataWithMoms?.length ?? 1));
+    const barPlotWidth = xAxisLength / ((data?.length ?? 1));
 
     return (
         <div>
@@ -67,7 +77,7 @@ function Graph() {
                         } else if (yValue >= 1000) {
                             formattedValue = Math.round(yValue / 1000) + "K";
                         } else {
-                            formattedValue = Math.round(yValue);
+                            formattedValue = Math.round(yValue / 10) * 10;
                         }
 
                         return (
@@ -82,13 +92,12 @@ function Graph() {
 
                     {/* --------------------------- BARS INKL MOMS --------------------------- */}
 
-                    {dataWithMoms.map(([date, dataY, color], index) => {
+                    {data.map(([date, dataY, color], index) => {
                         const x = x0 + index * barPlotWidth;
                         const yRatio = (dataY - dataYMin) / dataYRange;
                         const y = y0 + (1 - yRatio) * yAxisLength;
                         const height = yRatio * yAxisLength;
                         const sidePadding = 14;
-
 
                         return (
                             <g key={index}>
@@ -121,7 +130,7 @@ function Graph() {
                                 <text className="dateLabel" x={x + barPlotWidth / 2} y={xAxisY + 16} textAnchor={"middle"} >
                                     {date}
                                 </text>
-                                {checkBoxes.printVersion && <text className="barData" x={x + barPlotWidth / 2} y={((yAxisLength - height) - 10)} textAnchor={"middle"} fill="black"  >
+                                {checkBoxes.printVersion && <text className="barData" x={x + barPlotWidth / 2} y={((yAxisLength - height) - 5)} textAnchor={"middle"} fill="black"  >
                                     {dataY}
                                 </text>}
 
@@ -130,7 +139,7 @@ function Graph() {
                     })}                
                 </svg>
                 {/* <div>
-                    <p>{dataWithMoms}</p>
+                    <p>{data}</p>
                 </div> */}
 
                 {/* Tooltip */}
@@ -154,7 +163,7 @@ function Graph() {
                 )}
 
             </div>
-            <div className="radioBox">
+            {/* <div className="radioBox">
                 <div className="checkboxWrapper">
                     <input type="checkbox"
                         name="printVersion"
@@ -162,7 +171,7 @@ function Graph() {
                         onChange={handleCheckboxChange} />
                     <label htmlFor="option3">Print Version</label>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
