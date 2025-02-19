@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./graph.css";
 
-function App() {
+function Graph() {
     const [dataWithMoms, setData] = useState([]);
     const [dataWithoutMoms, setutanMomsData] = useState([]);
     const [tooltip, setTooltip] = useState({ x: 0, y: 0, value: 0, visible: false });
@@ -32,7 +32,7 @@ function App() {
     };
 
     useEffect(() => {
-        fetch("/data/dates.json")
+        fetch("/data/dates2.json")
             .then(response => response.json())
             .then(json => {
                 const formattedData = json.data.map(item => [item.month, item.value, item.color]);
@@ -259,4 +259,4 @@ function App() {
     );
 }
 
-export default App;
+export default Graph;

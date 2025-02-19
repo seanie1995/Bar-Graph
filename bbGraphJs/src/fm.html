@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>BB Kalender</title>
+</head>
+
+<body>
+    <script>
+
+        window.bookings = [];
+        window.filtering = [];
+        window.currentView = "Dag";
+        window.currentDate = new Date(new Date().setHours(0, 0, 0, 0));
+        window.searchResult = [];
+        window.valueList = [];
+
+        function setBookings(data){
+            let newData = JSON.parse(data);
+            window.bookings = newData["booking"];
+            window.currentView = newData["currentView"];
+            window.valueList = newData["valuelist"];
+
+            const dateString = newData["Datum"];
+            const parts = dateString.split("-");
+            const year = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1;
+            const day = parseInt(parts[2], 10);
+            let newDate = new Date(year, month, day);
+            window.currentDate = new Date(newDate.setHours(0, 0, 0, 0));
+            new Date(new Date().setHours(0, 0, 0, 0))
+            window.forceReload();
+        };
+
+        function setSearchResult(data){
+            let newData = JSON.parse(data);
+            window.searchResult = newData["booking"];
+            window.resetSearchResult();
+        }
+    </script>
+    <div id="root"></div>
+    <script>BUNDLEJSSCRIPT
+    </script>
+</body>
+
+</html>
