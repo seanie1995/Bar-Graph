@@ -4,7 +4,27 @@ import "./graph.css";
 function Graph() {
     const [data, setData] = useState([]);
     const [tooltip, setTooltip] = useState({ x: 0, y: 0, value: 0, visible: false });
-    const [fmData, setFmData] = useState([]);
+    // const [fmData, setFmData] = useState([]);
+    const [diagramStatus, setDiagramStatus] = useState("");
+
+    window.setNewDiagramStatus = (json) => {
+        try {
+            
+            const parsedData = JSON.parse(json)
+            const graphStatus = parsedData.status
+            // alert("You made it here!")
+            setDiagramStatus(graphStatus)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        // Call the FileMaker script when the component mounts
+        if (window.FileMaker) {
+            window.FileMaker.PerformScript("FetchData");
+        }
+    }, []);
 
     window.getDataFromFM = (json) => {
         try {
@@ -14,6 +34,7 @@ function Graph() {
 
             setData(formattedFMData)
         } catch (error) {
+
             console.log("Invalid JSON data");
         }
     }
@@ -53,9 +74,13 @@ function Graph() {
     const dataYMax = (data ?? []).reduce((currMax, [_, dataY]) => Math.max(currMax, dataY), -Infinity);
     const dataYMin = 0;
     const dataYRange = dataYMax - dataYMin;
-    const numYTicks = data?.length / 2;
+    let numYTicks = data?.length / 2;
     // const numYTicks = 5;
     const barPlotWidth = xAxisLength / ((data?.length ?? 1));
+
+    if (dataYMax === 0) {
+        numYTicks = 0;
+    }
 
     return (
         <div>
@@ -136,7 +161,7 @@ function Graph() {
 
                             </g>
                         );
-                    })}                
+                    })}
                 </svg>
                 {/* <div>
                     <p>{data}</p>

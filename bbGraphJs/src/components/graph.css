@@ -3,7 +3,9 @@
     display: flex;
     width: 710px;
     height: 251px;
-    padding: 20px; }
+    padding: 20px;
+    padding-bottom: 10px;
+}
 
 .graphContainer {
     /* border: 1px dotted black; */
