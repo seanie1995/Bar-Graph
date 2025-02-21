@@ -1,8 +1,8 @@
 .mainContainer {
     border: 1px solid black;
     display: flex;
-    width: 710px;
-    height: 251px;
+    width: 640px;
+    height: 160px;
     padding: 20px;
     padding-bottom: 10px;
 }

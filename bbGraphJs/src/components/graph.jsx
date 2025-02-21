@@ -63,8 +63,8 @@ function Graph() {
         }));
     };
 
-    const SVG_WIDTH = 680;
-    const SVG_HEIGHT = 200;
+    const SVG_WIDTH = 600;
+    const SVG_HEIGHT = 120;
     const x0 = 0;
     const xAxisLength = SVG_WIDTH - x0 * 2;
     const y0 = 0;
@@ -80,6 +80,8 @@ function Graph() {
 
     if (dataYMax === 0) {
         numYTicks = 0;
+    } else if (dataYMax === 10) {
+        numYTicks = 3
     }
 
     return (
@@ -101,8 +103,10 @@ function Graph() {
                             formattedValue = (yValue / 1000000).toFixed(1) + "M";
                         } else if (yValue >= 1000) {
                             formattedValue = Math.round(yValue / 1000) + "K";
-                        } else {
+                        } else if (yValue >= 100){
                             formattedValue = Math.round(yValue / 10) * 10;
+                        } else {
+                            formattedValue = yValue
                         }
 
                         return (
@@ -131,7 +135,8 @@ function Graph() {
                                     y={y}
                                     width={barPlotWidth - sidePadding}
                                     height={height}
-                                    fill={"#e38a1e"}
+                                    fill={"hsla(33, 78%, 50%, 0.8)"}
+                                    rx={3}
                                     onMouseEnter={(e) =>
                                         setTooltip({
                                             x: e.clientX,
