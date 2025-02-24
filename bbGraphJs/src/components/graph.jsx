@@ -26,28 +26,28 @@ function Graph() {
         }
     }, []);
 
-    window.getDataFromFM = (json) => {
-        try {
-            const parsedData = JSON.parse(json);
+    // window.getDataFromFM = (json) => {
+    //     try {
+    //         const parsedData = JSON.parse(json);
 
-            const formattedFMData = Object.values(parsedData).map(item => [item.date, item.articles])
+    //         const formattedFMData = Object.values(parsedData).map(item => [item.date, item.articles])
 
-            setData(formattedFMData)
-        } catch (error) {
+    //         setData(formattedFMData)
+    //     } catch (error) {
 
-            console.log("Invalid JSON data");
-        }
-    }
+    //         console.log("Invalid JSON data");
+    //     }
+    // }
 
-    // useEffect(() => {
-    //     fetch("/data/dates.json")
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             const formattedData = json.data.map(item => [item.month, item.value, item.color]);
-    //             setData(formattedData);
-    //         })
-    //         .catch(error => console.error(error));
-    // }, []);
+    useEffect(() => {
+        fetch("/data/dates.json")
+            .then(response => response.json())
+            .then(json => {
+                const formattedData = json.data.map(item => [item.month, item.value, item.color]);
+                setData(formattedData);
+            })
+            .catch(error => console.error(error));
+    }, []);
 
     const [checkBoxes, setCheckBoxes] = useState({
         exklMoms: false,
@@ -63,8 +63,8 @@ function Graph() {
         }));
     };
 
-    const SVG_WIDTH = 600;
-    const SVG_HEIGHT = 120;
+    const SVG_WIDTH = 669;
+    const SVG_HEIGHT = 200;
     const x0 = 0;
     const xAxisLength = SVG_WIDTH - x0 * 2;
     const y0 = 0;

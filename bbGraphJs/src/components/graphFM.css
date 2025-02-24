@@ -1,13 +1,15 @@
 .mainContainer {
     border: 1px solid black;
     display: flex;
-    width: 710px;
-    height: 251px;
+    width: 640px;
+    height: 160px;
+    padding: 20px;
+    padding-bottom: 10px;
 }
 
 .graphContainer {
     /* border: 1px dotted black; */
-    padding: 20px 25px 20px 30px;
+    padding: 15px 25px 20px 30px;
 }
 
 .dateLabel {
@@ -22,7 +24,7 @@
 
 .barData {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .radioBox {
