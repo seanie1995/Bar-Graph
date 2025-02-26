@@ -9,7 +9,6 @@ function Graph() {
 
     window.setNewDiagramStatus = (json) => {
         try {
-            
             const parsedData = JSON.parse(json)
             const graphStatus = parsedData.status
             // alert("You made it here!")
@@ -26,28 +25,30 @@ function Graph() {
         }
     }, []);
 
-    // window.getDataFromFM = (json) => {
-    //     try {
-    //         const parsedData = JSON.parse(json);
+    window.getDataFromFM = (json) => {
+        try {
+            const parsedData = JSON.parse(json);
 
-    //         const formattedFMData = Object.values(parsedData).map(item => [item.date, item.articles])
+            const formattedFMData = Object.values(parsedData).map(item => [item.date, item.articles, item.color])
 
-    //         setData(formattedFMData)
-    //     } catch (error) {
+            setData(formattedFMData)
 
-    //         console.log("Invalid JSON data");
-    //     }
-    // }
+            
+        } catch (error) {
 
-    useEffect(() => {
-        fetch("/data/dates.json")
-            .then(response => response.json())
-            .then(json => {
-                const formattedData = json.data.map(item => [item.month, item.value, item.color]);
-                setData(formattedData);
-            })
-            .catch(error => console.error(error));
-    }, []);
+            console.log("Invalid JSON data");
+        }
+    }
+
+    // useEffect(() => {
+    //     fetch("/data/dates3.json")
+    //         .then(response => response.json())
+    //         .then(json => {
+    //             const formattedData = json.data.map(item => [item.month, item.value, item.color]);
+    //             setData(formattedData);
+    //         })
+    //         .catch(error => console.error(error));
+    // }, []);
 
     const [checkBoxes, setCheckBoxes] = useState({
         exklMoms: false,
@@ -75,13 +76,17 @@ function Graph() {
     const dataYMin = 0;
     const dataYRange = dataYMax - dataYMin;
     let numYTicks = data?.length / 2;
-    // const numYTicks = 5;
+    // const numYTicks = 8;
     const barPlotWidth = xAxisLength / ((data?.length ?? 1));
 
     if (dataYMax === 0) {
         numYTicks = 0;
     } else if (dataYMax === 10) {
         numYTicks = 3
+    }
+
+    if (numYTicks >= 8) {
+        numYTicks = 8;
     }
 
     return (
@@ -135,7 +140,7 @@ function Graph() {
                                     y={y}
                                     width={barPlotWidth - sidePadding}
                                     height={height}
-                                    fill={"hsla(33, 78%, 50%, 0.8)"}
+                                    fill={color}
                                     rx={3}
                                     onMouseEnter={(e) =>
                                         setTooltip({
